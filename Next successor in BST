@@ -72,7 +72,7 @@ public:
 int main()
 {
 	/*Test code
-				5
+			    5
 			   / \
 			  4   10
 			 /    /\
