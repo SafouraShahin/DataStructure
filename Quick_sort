@@ -1,0 +1,69 @@
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  // QuickSort.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// Quick ascending Sort
+//Time complexity: O(nlogn) -> n:size of the array
+//Space complexity: O()
+
+#include "pch.h"
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+class Sorting {
+public:
+	vector<int> sortarray(vector<int>& nums) {
+		quick_sort(nums, 0, nums.size() - 1);
+		return nums;
+	}
+private:
+
+	void quick_sort(vector<int>& nums, int l, int r) {
+		if (l >= r)
+			return;
+		int p = partition(nums, l, r);
+		quick_sort(nums, l, p - 1);
+		quick_sort(nums, p + 1, r);
+	}
+
+	int partition(vector<int>& nums, int p, int r) {
+		int pivot = nums[r];
+		int i = p - 1;
+		int tmp = 0;
+		for (int j = p; j < r; j++) {
+			if (nums[j] <= pivot) {
+				i++;
+				tmp = nums[i];
+				nums[i] = nums[j];
+				nums[j] = tmp;
+				//std::swap(nums[i], nums[j]);
+			}
+		}
+		//std::swap(nums[i + 1], nums[r]);
+		tmp = nums[i + 1];
+		nums[i + 1] = nums[r];
+		nums[r] = tmp;
+		return i + 1;
+	}
+};
+
+int main()
+{
+	vector<int> nums = { 1, 0, 3, 2, 8, 5 };
+	Sorting sorted;
+	vector<int> arr = sorted.sortarray(nums);
+	for (int j = 0; j < arr.size(); ++j) {
+		cout << arr[j] << ' ';
+	}
+}
+
+// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
+// Debug program: F5 or Debug > Start Debugging menu
+
+// Tips for Getting Started: 
+//   1. Use the Solution Explorer window to add/manage files
+//   2. Use the Team Explorer window to connect to source control
+//   3. Use the Output window to see build output and other messages
+//   4. Use the Error List window to view errors
+//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
+//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
