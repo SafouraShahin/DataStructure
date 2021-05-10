@@ -1,0 +1,69 @@
+// Sort_InPlace_UpTo_ThreeTypeOfValues.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include "pch.h"
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Sort_inPlace {
+public:
+	vector<int> Sorting(vector<int>& num, int val) {
+		vector<int> indexs(val,0);
+		for (int i = 0; i < num.size(); ++i) {
+			indexs[num[i]]++;
+		}
+
+		int start_index = 0, end_index = 0;
+		for (int i = 0; i < indexs.size(); ++i) {
+			end_index += indexs[i];
+			num = mergingVals(num, i, start_index, end_index);
+			start_index = end_index;
+		}
+
+
+		//int zeros = 0, ones = 0, twos = 0;
+
+		//for (int c : num) {
+		//	if (c == 0) zeros++;
+		//	else if (c == 1) ones++;
+		//	else if (c == 2) twos++;
+		//}
+
+		//num = mergingVals(num, 0, 0, zeros);
+		//num = mergingVals(num, 1, zeros, ones + zeros);
+		//num = mergingVals(num, 2, ones + zeros, twos + ones + zeros);
+
+		return num;
+	}
+
+	vector<int> mergingVals(vector<int>& num, int val, int start_indx, int end_index) {
+		if (end_index == 0) return {};
+		for (int i = start_indx; i < end_index; ++i) {
+			num[i] = val;
+		}
+		return num;
+	}
+};
+
+int main()
+{
+	Sort_inPlace sorted;
+	vector<int> num = {2,0,2,0,1,0,1,2};
+	/*vector<int> num = {};*/
+	vector<int> arr = sorted.Sorting(num,3);
+		for (int k = 0; k < arr.size(); ++k) {
+			cout << arr[k] << ' ';
+		}
+}
+
+// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
+// Debug program: F5 or Debug > Start Debugging menu
+
+// Tips for Getting Started: 
+//   1. Use the Solution Explorer window to add/manage files
+//   2. Use the Team Explorer window to connect to source control
+//   3. Use the Output window to see build output and other messages
+//   4. Use the Error List window to view errors
+//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
+//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
