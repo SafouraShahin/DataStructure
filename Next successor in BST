@@ -88,7 +88,7 @@ int main()
 	root = sol.Insert(root, 4);
 	root = sol.Insert(root, 10); 
 	root = sol.Insert(root, 1);
-    root = sol.Insert(root, 11); 
+        root = sol.Insert(root, 11); 
 	root = sol.Insert(root, 2);
 	root = sol.Insert(root, 9); 
 	root = sol.Insert(root, 12);
